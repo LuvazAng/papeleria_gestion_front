@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ producto.idProducto ? 'EDITANDO: ' + producto.nombreProducto : 'Agregando un nuevo producto' }}</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+            <mat-form-field class="example-full-width" *ngIf="producto.idProducto">
+                <mat-label>ID</mat-label>
+                <input matInput disabled [(ngModel)]="producto.idProducto">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Producto</mat-label>
+                <input matInput [(ngModel)]="producto.nombreProducto">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Descripcion</mat-label>
+                <input matInput [(ngModel)]="producto.descripcion">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Precio</mat-label>
+                <input matInput [(ngModel)]="producto.precioUnitario">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Stock</mat-label>
+                <input matInput [(ngModel)]="producto.stock">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" *ngIf="producto.fechaProducto">
+                <mat-label>Fecha</mat-label>
+                <input matInput disabled [(ngModel)]="producto.fechaProducto">
+            </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button color="primary"(click)="itemSave()">GUARDAR</button>
+        <button mat-button color="warn" (click)="itemClose()">CANCELAR</button>
+    </mat-card-actions>
+</mat-card>
