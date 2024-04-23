@@ -273,6 +273,11 @@ table {
   width: 100%;
 }
 
+.mat-form-field{
+  font-size: 15px;
+  width: 100%;
+}
+
 section {
   display: table;
 }
@@ -303,4 +308,15 @@ section {
   display: flex;
   justify-content: center;
   width: 120px;
+}
+.container-items{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h3{
+  font-size: 20px;
+  font-weight: bold;
 }

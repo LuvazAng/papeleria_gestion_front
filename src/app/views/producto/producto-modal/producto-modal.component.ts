@@ -15,7 +15,7 @@ export class ProductoModalComponent implements OnInit{
   constructor(
     private dialogRef: MatDialogRef<ProductoModalComponent>,
     private productoService: ProductoService,
-    @Inject(MAT_DIALOG_DATA) private data: Producto  
+    @Inject(MAT_DIALOG_DATA) private data: Producto
   ) { }
 
   ngOnInit(): void {
