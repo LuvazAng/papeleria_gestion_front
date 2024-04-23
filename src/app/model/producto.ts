@@ -4,6 +4,6 @@ export class Producto {
   descripcion: string;
   precioUnitario: number;
   stock: number;
-  fechaProducto: Date;
+  fechaProducto: string;
   borradoProducto: boolean;
 }
