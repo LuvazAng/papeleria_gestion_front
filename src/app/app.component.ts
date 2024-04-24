@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'papeleria-gestion-front';
+
+  toggleSidebar(): void {
+    const body: Element = document.querySelector('body')!;
+    const sidebar: Element = body.querySelector('.sidebar')!;
+    sidebar.classList.toggle('close');
+  }
 }

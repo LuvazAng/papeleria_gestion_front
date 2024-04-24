@@ -1,1 +1,97 @@
-<app-producto ngSkipHydration></app-producto>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Productos</title>
+</head>
+
+<body>
+    <nav class="sidebar" ngSkipHydration>
+        <header>
+            <div class="div image-text">
+                <span class="image">
+                    <img src="" alt="" />
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">Papeleria Analí</span>
+                </div>
+            </div>
+
+            <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="">
+                            <i class="bx bxs-home icon"></i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a routerLink="/facturas">
+                            <i class="bx bxs-cart icon"></i>
+                            <span class="text nav-text">Facturación</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a routerLink="/productos">
+                            <i class="bx bxs-package icon"></i>
+                            <span class="text nav-text">Producto</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a routerLink="/clientes">
+                            <i class="bx bxs-face icon"></i>
+                            <span class="text nav-text">Cliente</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a routerLink="/proveedores">
+                            <i class="bx bxs-cart-download icon"></i>
+                            <span class="text nav-text">Proveedor</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a routerLink="/usuarios">
+                            <i class="bx bxs-user icon"></i>
+                            <span class="text nav-text">Usuarios</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="">
+                        <i class="bx bxs-cog icon"></i>
+                        <span class="text nav-text">Configuraciones</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="">
+                        <i class="bx bxs-log-out icon"></i>
+                        <span class="text nav-text">Salir</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="card">
+            <div class="container-titles">
+                <div class="demo-section">
+                    <mat-icon [matBadge]="14" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+</body>
+</html>

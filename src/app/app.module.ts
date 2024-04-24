@@ -20,14 +20,23 @@ import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge'; 
-
+import { RouterModule } from '@angular/router';
+import { FacturasComponent } from './views/facturas/facturas.component';
+import { ClienteComponent } from './views/cliente/cliente.component';
+import { ProveedorComponent } from './views/proveedor/proveedor.component';
+import { UsuarioComponent } from './views/usuario/usuario.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductoComponent,
     ConfirmDialogComponent,
-    ProductoModalComponent
+    ProductoModalComponent,
+    FacturasComponent,
+    ClienteComponent,
+    ProveedorComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +53,12 @@ import { MatBadgeModule } from '@angular/material/badge';
     FormsModule,
     MatDatepickerModule,
     MatPaginatorModule,
-    MatBadgeModule
+    MatBadgeModule,
+    RouterModule,
+    MatGridListModule
   ],
   providers: [
-    provideClientHydration(),
-    provideAnimationsAsync(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
