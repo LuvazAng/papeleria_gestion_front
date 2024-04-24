@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge'; 
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatLabel,
     FormsModule,
     MatDatepickerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatBadgeModule
   ],
   providers: [
     provideClientHydration(),

@@ -23,12 +23,12 @@ export class ProductoComponent implements OnInit {
     'opciones',
   ];
   dataSource: MatTableDataSource<Producto>;
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  stockBajo: number = 0;
 
   constructor(
     private productoService: ProductoService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
