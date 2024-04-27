@@ -28,7 +28,8 @@ import { UsuarioComponent } from './views/usuario/usuario.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ClienteModalComponent } from './views/cliente/cliente-modal/cliente-modal.component';
 import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/proveedor-modal.component';
-
+import { UsuarioModalComponent } from './views/usuario/usuario-modal/usuario-modal.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/prove
     ProveedorComponent,
     UsuarioComponent,
     ClienteModalComponent,
-    ProveedorModalComponent
+    ProveedorModalComponent,
+    UsuarioModalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/prove
     MatPaginatorModule,
     MatBadgeModule,
     RouterModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule
   ],
   providers: [
     provideAnimationsAsync()
