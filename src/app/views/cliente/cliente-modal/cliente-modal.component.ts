@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ClienteService } from '../../../service/cliente.service';
 import { Cliente } from '../../../model/cliente';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente-modal',
@@ -11,6 +12,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ClienteModalComponent implements OnInit {
 
   cliente: Cliente;
+
+  nombreClienteControl = new FormControl('', Validators.required);
+  apellPClienteControl = new FormControl('', Validators.required);
+  apellMClienteControl = new FormControl('', Validators.required);
+  telefonoClienteControl = new FormControl('', Validators.required);
 
   constructor(
     private dialogRef: MatDialogRef<ClienteModalComponent>,

@@ -11,26 +11,45 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Nombre de usuario</mat-label>
-            <input matInput [(ngModel)]="usuario.nombreUsuario">
+            <input matInput required type="text" [formControl]="nombreUsuarioControl"
+                [(ngModel)]="usuario.nombreUsuario">
+            <mat-error *ngIf="nombreUsuarioControl.hasError('required')">
+                Nombre de usuario es <strong>obligatorio</strong>
+            </mat-error>
         </mat-form-field>
-        
+
         <mat-form-field class="example-full-width" *ngIf="usuario.idUsuario">
             <mat-label>Contraseña</mat-label>
-            <input matInput [(ngModel)]="usuario.contrasenaUsuario">
+            <input matInput required [formControl]="contraUsuarioControl" [(ngModel)]="usuario.contrasenaUsuario">
+            <mat-error *ngIf="contraUsuarioControl.hasError('required')">
+                Contraseña es <strong>obligatorio</strong>
+            </mat-error>
         </mat-form-field>
-        
 
         <mat-form-field class="example-full-width">
             <mat-label>Correo electronico</mat-label>
-            <input matInput [(ngModel)]="usuario.correoUsuario">
+            <input matInput required type="email" [formControl]="correoUsuarioControl"
+                [(ngModel)]="usuario.correoUsuario">
+
+            @if (correoUsuarioControl.hasError('email') && !correoUsuarioControl.hasError('required')) {
+            <mat-error>Por favor, ingresa un correo valido</mat-error>
+            }
+            @if (correoUsuarioControl.hasError('required')) {
+            <mat-error>Correo electronico es <strong>obligatorio</strong></mat-error>
+            }
         </mat-form-field>
+
         <mat-form-field class="example-full-width">
             <mat-label>Rol</mat-label>
-            <input matInput [(ngModel)]="usuario.rol">
+            <input matInput required type="text" [formControl]="rolUsuarioControl" [(ngModel)]="usuario.rol">
+            <mat-error *ngIf="rolUsuarioControl.hasError('required')">
+                Rol es <strong>obligatorio</strong>
+            </mat-error>
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions align="end">
         <button mat-button color="warn" (click)="itemClose()">CANCELAR</button>
-        <button mat-button color="primary" (click)="itemSave()">GUARDAR</button>
+        <button mat-button color="primary" (click)="itemSave()"
+            [disabled]="correoUsuarioControl.invalid || nombreUsuarioControl.invalid || rolUsuarioControl.invalid">GUARDAR</button>
     </mat-card-actions>
 </mat-card>

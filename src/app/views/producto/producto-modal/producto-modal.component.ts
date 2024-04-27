@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ProductoService } from '../../../service/producto.service';
 import { Producto } from '../../../model/producto';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-producto-modal',
@@ -11,6 +12,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ProductoModalComponent implements OnInit{
 
   producto: Producto;
+
+  nombreProductoControl = new FormControl('', Validators.required);
+  descripcionProductoControl = new FormControl('', Validators.required);
+  precioProductoControl = new FormControl('', Validators.required);
+  stockProductoControl = new FormControl('', Validators.required);
 
   constructor(
     private dialogRef: MatDialogRef<ProductoModalComponent>,

@@ -10,19 +10,31 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre/s</mat-label>
-                <input matInput [(ngModel)]="cliente.nombreCliente">
+                <input matInput [formControl]="nombreClienteControl" [(ngModel)]="cliente.nombreCliente">
+                <mat-error *ngIf="nombreClienteControl.hasError('required')">
+                    Nombre del cliente es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Apellido Paterno</mat-label>
-                <input matInput [(ngModel)]="cliente.apellPaterno">
+                <input matInput [formControl]="apellPClienteControl" [(ngModel)]="cliente.apellPaterno">
+                <mat-error *ngIf="apellPClienteControl.hasError('required')">
+                    Apellido paterno del cliente es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Apellido Materno</mat-label>
-                <input matInput [(ngModel)]="cliente.apellMaterno">
+                <input matInput [formControl]="apellMClienteControl" [(ngModel)]="cliente.apellMaterno">
+                <mat-error *ngIf="apellMClienteControl.hasError('required')">
+                    Apellido materno del cliente es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Telefono</mat-label>
-                <input matInput [(ngModel)]="cliente.telefonoCliente">
+                <input matInput [formControl]="telefonoClienteControl" [(ngModel)]="cliente.telefonoCliente">
+                <mat-error *ngIf="telefonoClienteControl.hasError('required')">
+                    Telefono del cliente es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" >
                 <mat-label>Fecha</mat-label>
@@ -31,7 +43,7 @@
     </mat-card-content>
     <mat-card-actions align="end">
         <button mat-button color="warn" (click)="itemClose()">CANCELAR</button>
-        <button mat-button color="primary"(click)="itemSave()">GUARDAR</button>
+        <button mat-button color="primary"(click)="itemSave()" [disabled]="nombreClienteControl.invalid || apellPClienteControl.invalid || apellMClienteControl.invalid || telefonoClienteControl.invalid">GUARDAR</button>
 
     </mat-card-actions>
 </mat-card>

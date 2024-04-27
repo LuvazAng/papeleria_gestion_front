@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Usuario } from '../../../model/usuario';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsuarioService } from '../../../service/usuario.service';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-modal',
@@ -12,6 +13,12 @@ export class UsuarioModalComponent implements OnInit {
 
   usuario: Usuario;
 
+  nombreUsuarioControl = new FormControl('', Validators.required);
+  correoUsuarioControl = new FormControl('', [Validators.required, Validators.email]);
+  rolUsuarioControl = new FormControl('', Validators.required);
+  contraUsuarioControl = new FormControl('', Validators.required);
+
+  
   constructor(
     private dialogRef: MatDialogRef<UsuarioModalComponent>,
     private usuarioService: UsuarioService,
@@ -24,7 +31,7 @@ export class UsuarioModalComponent implements OnInit {
     this.usuario.nombreUsuario = this.data.nombreUsuario;
     if (!this.usuario.idUsuario) {
       this.usuario.contrasenaUsuario = "default";
-    }else{
+    } else {
       this.usuario.contrasenaUsuario = this.data.contrasenaUsuario;
     }
     this.usuario.correoUsuario = this.data.correoUsuario;

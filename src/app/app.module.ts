@@ -30,6 +30,7 @@ import { ClienteModalComponent } from './views/cliente/cliente-modal/cliente-mod
 import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/proveedor-modal.component';
 import { UsuarioModalComponent } from './views/usuario/usuario-modal/usuario-modal.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatBadgeModule,
     RouterModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync()

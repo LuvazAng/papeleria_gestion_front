@@ -10,19 +10,31 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Producto</mat-label>
-                <input matInput [(ngModel)]="producto.nombreProducto">
+                <input matInput [formControl]="nombreProductoControl" [(ngModel)]="producto.nombreProducto">
+                <mat-error *ngIf="nombreProductoControl.hasError('required')">
+                    Nombre del producto es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Descripcion</mat-label>
-                <input matInput [(ngModel)]="producto.descripcion">
+                <input matInput [formControl]="descripcionProductoControl" [(ngModel)]="producto.descripcion">
+                <mat-error *ngIf="descripcionProductoControl.hasError('required')">
+                    Descripción del producto es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Precio</mat-label>
-                <input matInput [(ngModel)]="producto.precioUnitario">
+                <input matInput [formControl]="precioProductoControl" [(ngModel)]="producto.precioUnitario">
+                <mat-error *ngIf="precioProductoControl.hasError('required')">
+                    Precio del producto es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Stock</mat-label>
-                <input matInput [(ngModel)]="producto.stock">
+                <input matInput [formControl]="stockProductoControl" [(ngModel)]="producto.stock">
+                <mat-error *ngIf="stockProductoControl.hasError('required')">
+                    Stock del producto es <strong>obligatorio</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" >
                 <mat-label>Fecha</mat-label>
@@ -31,6 +43,6 @@
     </mat-card-content>
     <mat-card-actions align="end">
         <button mat-button color="warn" (click)="itemClose()">CANCELAR</button>
-        <button mat-button color="primary"(click)="itemSave()">GUARDAR</button>
+        <button mat-button color="primary"(click)="itemSave()" [disabled]="nombreProductoControl.invalid || descripcionProductoControl.invalid || precioProductoControl.invalid || stockProductoControl.invalid">GUARDAR</button>
     </mat-card-actions>
 </mat-card>

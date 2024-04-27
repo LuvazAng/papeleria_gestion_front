@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Proveedor } from '../../../model/proveedor';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProveedorService } from '../../../service/proveedor.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-proveedor-modal',
@@ -11,7 +12,10 @@ import { ProveedorService } from '../../../service/proveedor.service';
 export class ProveedorModalComponent implements OnInit {
 
   proveedor: Proveedor;
-
+  nombreProveedorControl = new FormControl('', Validators.required);
+  direccionProveedorControl = new FormControl('', Validators.required);
+  telefonoProveedorControl = new FormControl('', Validators.required);
+  
   constructor(
     private dialogRef: MatDialogRef<ProveedorModalComponent>,
     private proveedorService: ProveedorService,
