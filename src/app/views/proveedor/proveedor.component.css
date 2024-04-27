@@ -1,0 +1,11 @@
+.container-items{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  h3{
+    font-size: 20px;
+    font-weight: bold;
+  }

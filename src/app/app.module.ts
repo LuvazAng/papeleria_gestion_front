@@ -27,6 +27,7 @@ import { ProveedorComponent } from './views/proveedor/proveedor.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ClienteModalComponent } from './views/cliente/cliente-modal/cliente-modal.component';
+import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/proveedor-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ClienteModalComponent } from './views/cliente/cliente-modal/cliente-mod
     ClienteComponent,
     ProveedorComponent,
     UsuarioComponent,
-    ClienteModalComponent
+    ClienteModalComponent,
+    ProveedorModalComponent
   ],
   imports: [
     BrowserModule,
