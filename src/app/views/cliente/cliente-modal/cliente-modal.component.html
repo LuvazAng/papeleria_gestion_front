@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ cliente.idCliente ? 'EDITANDO: ' + cliente.nombreCliente : 'Agregando un nuevo producto' }}</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+            <mat-form-field class="example-full-width" *ngIf="cliente.idCliente">
+                <mat-label>ID</mat-label>
+                <input matInput disabled [(ngModel)]="cliente.idCliente">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre/s</mat-label>
+                <input matInput [(ngModel)]="cliente.nombreCliente">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellido Paterno</mat-label>
+                <input matInput [(ngModel)]="cliente.apellPaterno">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellido Materno</mat-label>
+                <input matInput [(ngModel)]="cliente.apellMaterno">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Telefono</mat-label>
+                <input matInput [(ngModel)]="cliente.telefonoCliente">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" >
+                <mat-label>Fecha</mat-label>
+                <input matInput disabled [(ngModel)]="cliente.fechaCliente">
+            </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button color="primary"(click)="itemSave()">GUARDAR</button>
+        <button mat-button color="warn" (click)="itemClose()">CANCELAR</button>
+    </mat-card-actions>
+</mat-card>

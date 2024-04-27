@@ -25,6 +25,9 @@ export class ProductoModalComponent implements OnInit{
     this.producto.descripcion = this.data.descripcion;
     this.producto.precioUnitario = this.data.precioUnitario;
     this.producto.stock = this.data.stock;
+    if(this.producto.fechaProducto = this.data.fechaProducto){
+      this.producto.fechaProducto = this.data.fechaProducto;
+    }
     this.producto.fechaProducto = new Date().toISOString().slice(0, 10);
   }
 

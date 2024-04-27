@@ -9,7 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ConfirmDialogComponent } from './views/producto/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../app/confirm-dialog/confirm-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductoModalComponent } from './views/producto/producto-modal/producto-modal.component';
@@ -26,6 +26,7 @@ import { ClienteComponent } from './views/cliente/cliente.component';
 import { ProveedorComponent } from './views/proveedor/proveedor.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ClienteModalComponent } from './views/cliente/cliente-modal/cliente-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FacturasComponent,
     ClienteComponent,
     ProveedorComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ClienteModalComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { ProductoService } from '../../service/producto.service';
 import { Producto } from '../../model/producto';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { ProductoModalComponent } from './producto-modal/producto-modal.component';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -24,7 +24,6 @@ export class ProductoComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<Producto>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  stockBajo: number = 0;
 
   constructor(
     private productoService: ProductoService,
@@ -43,11 +42,6 @@ export class ProductoComponent implements OnInit {
     });
   }
 
-  toggleSidebar(): void {
-    const body: Element = document.querySelector('body')!;
-    const sidebar: Element = body.querySelector('.sidebar')!;
-    sidebar.classList.toggle('close');
-  }
 
   onEdit(producto?: Producto) {
     let produc = producto != null ? producto : new Producto();
