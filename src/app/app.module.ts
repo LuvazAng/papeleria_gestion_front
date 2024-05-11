@@ -34,6 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FacturasModelComponent } from './views/facturas/facturas-model/facturas-model.component';
 import { InicioComponent } from './views/inicio/inicio.component';
+import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { InicioComponent } from './views/inicio/inicio.component';
     ProveedorModalComponent,
     UsuarioModalComponent,
     FacturasModelComponent,
-    InicioComponent
+    InicioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { InicioComponent } from './views/inicio/inicio.component';
     MatAutocompleteModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../model/usuario';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UsuarioService {
   usuarioActualizar = new Subject<Usuario[]>();
   private url: string = "http://localhost:8080/usuarios"
+  private loginUrl: string = "http://localhost:8080/usuarios/login";
 
   constructor(private http: HttpClient) { }
   listar() {
@@ -22,5 +23,8 @@ export class UsuarioService {
   }
   registrar(usuario: Usuario) {
     return this.http.post(this.url, usuario);
+  }
+  login(correoUsuario: string, contrasenaUsuario: string): Observable<any> {
+    return this.http.post<any>(this.loginUrl, { correoUsuario, contrasenaUsuario });
   }
 }

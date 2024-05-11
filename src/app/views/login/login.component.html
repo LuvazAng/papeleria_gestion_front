@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centrar Div en Pantalla</title>
+</head>
+
+<body>
+
+  <div class="modal">
+    <div class="modal-content">
+      <h2>Iniciar sesión</h2>
+      <form (ngSubmit)="iniciarSesion()">
+        <div>
+          <mat-form-field>
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="email" id="correoUsuario" name="correoUsuario" [(ngModel)]="correoUsuario" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" id="contrasenaUsuario" name="contrasenaUsuario"
+              [(ngModel)]="contrasenaUsuario" required>
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" type="submit">Ingresar</button>
+      </form>
+      <div *ngIf="mensajeError" class="error">{{ mensajeError }}</div>
+      <div *ngIf="usuarioAutenticado" class="exito">¡Inicio de sesión exitoso!</div>
+    </div>
+  </div>
+</body>
+
+</html>

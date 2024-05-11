@@ -9,83 +9,90 @@
 </head>
 
 <body>
-    <nav class="sidebar" ngSkipHydration>
-        <header>
-            <div class="div image-text">
-                <span class="image">
-                    <img src="" alt="" />
-                </span>
+    <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
+        <app-login></app-login>
+    </ng-container>
 
-                <div class="text header-text">
-                    <span class="name">Papeleria Analí</span>
+    <ng-template #loggedIn>
+        <nav class="sidebar" ngSkipHydration>
+            <header>
+                <div class="div image-text">
+                    <span class="image">
+                        <img src="" alt="" />
+                    </span>
+    
+                    <div class="text header-text">
+                        <span class="name">Papeleria Analí</span>
+                    </div>
+                </div>
+    
+                <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
+            </header>
+    
+            <div class="menu-bar">
+                <div class="menu">
+                    <ul class="menu-links">
+                        <li class="nav-link">
+                            <a routerLink="/inicio">
+                                <i class="bx bxs-home icon"></i>
+                                <span class="text nav-text">Inicio</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a routerLink="/facturas">
+                                <i class="bx bxs-cart icon"></i>
+                                <span class="text nav-text">Facturación</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a routerLink="/productos">
+                                <i class="bx bxs-package icon"></i>
+                                <span class="text nav-text">Producto</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a routerLink="/clientes">
+                                <i class="bx bxs-face icon"></i>
+                                <span class="text nav-text">Cliente</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a routerLink="/proveedores">
+                                <i class="bx bxs-cart-download icon"></i>
+                                <span class="text nav-text">Proveedor</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a routerLink="/usuarios">
+                                <i class="bx bxs-user icon"></i>
+                                <span class="text nav-text">Usuarios</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-content">
+                    <li class="">
+                        <a href="">
+                            <i class="bx bxs-cog icon"></i>
+                            <span class="text nav-text">Configuraciones</span>
+                        </a>
+                    </li>
+                    <li (click)="logout">
+                        <a href="">
+                            <i class="bx bxs-log-out icon"></i>
+                            <span class="text nav-text">Salir</span>
+                        </a>
+                    </li>
                 </div>
             </div>
-
-            <i class="bx bx-chevron-right toggle" (click)="toggleSidebar()"></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a routerLink="/inicio">
-                            <i class="bx bxs-home icon"></i>
-                            <span class="text nav-text">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a routerLink="/facturas">
-                            <i class="bx bxs-cart icon"></i>
-                            <span class="text nav-text">Facturación</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a routerLink="/productos">
-                            <i class="bx bxs-package icon"></i>
-                            <span class="text nav-text">Producto</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a routerLink="/clientes">
-                            <i class="bx bxs-face icon"></i>
-                            <span class="text nav-text">Cliente</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a routerLink="/proveedores">
-                            <i class="bx bxs-cart-download icon"></i>
-                            <span class="text nav-text">Proveedor</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a routerLink="/usuarios">
-                            <i class="bx bxs-user icon"></i>
-                            <span class="text nav-text">Usuarios</span>
-                        </a>
-                    </li>
-                </ul>
+        </nav>
+        <section class="home">
+            <div class="card">
+                <router-outlet></router-outlet>
             </div>
-            <div class="bottom-content">
-                <li class="">
-                    <a href="">
-                        <i class="bx bxs-cog icon"></i>
-                        <span class="text nav-text">Configuraciones</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="">
-                        <i class="bx bxs-log-out icon"></i>
-                        <span class="text nav-text">Salir</span>
-                    </a>
-                </li>
-            </div>
-        </div>
-    </nav>
+        </section>
+    </ng-template>
 
-    <section class="home">
-        <div class="card">
-            <router-outlet></router-outlet>
-        </div>
-    </section>
+
 </body>
 </html>

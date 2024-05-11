@@ -9,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './producto-modal.component.html',
   styleUrl: './producto-modal.component.css'
 })
-export class ProductoModalComponent implements OnInit{
+export class ProductoModalComponent implements OnInit {
 
   producto: Producto;
 
@@ -31,22 +31,23 @@ export class ProductoModalComponent implements OnInit{
     this.producto.descripcion = this.data.descripcion;
     this.producto.precioUnitario = this.data.precioUnitario;
     this.producto.stock = this.data.stock;
-    if(this.producto.fechaProducto = this.data.fechaProducto){
+    if (this.producto.fechaProducto = this.data.fechaProducto) {
       this.producto.fechaProducto = this.data.fechaProducto;
+    } else {
+      this.producto.fechaProducto = new Date().toISOString().slice(0, 10);
     }
-    this.producto.fechaProducto = new Date().toISOString().slice(0, 10);
   }
 
-  itemSave(){
-    if(this.producto != null && this.producto.idProducto > 0){
-      this.productoService.editar(this.producto).subscribe(()=>{
-        return this.productoService.listar().subscribe(data =>{
+  itemSave() {
+    if (this.producto != null && this.producto.idProducto > 0) {
+      this.productoService.editar(this.producto).subscribe(() => {
+        return this.productoService.listar().subscribe(data => {
           this.productoService.productoActualizar.next(data);
         })
       });
-      
-    }else{
-      this.productoService.registrar(this.producto).subscribe(() =>{
+
+    } else {
+      this.productoService.registrar(this.producto).subscribe(() => {
         this.productoService.listar().subscribe(data => {
           this.productoService.productoActualizar.next(data);
         })
@@ -55,7 +56,7 @@ export class ProductoModalComponent implements OnInit{
     this.itemClose()
   }
 
-  itemClose(){
+  itemClose() {
     this.dialogRef.close();
   }
 }

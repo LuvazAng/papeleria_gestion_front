@@ -6,15 +6,18 @@ import { ClienteComponent } from './views/cliente/cliente.component';
 import { ProveedorComponent } from './views/proveedor/proveedor.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { InicioComponent } from './views/inicio/inicio.component';
+import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/inicio', pathMatch: 'full'},
-  { path: 'productos', component: ProductoComponent },
-  { path: 'facturas', component: FacturasComponent },
-  { path: 'clientes', component: ClienteComponent },
-  { path: 'proveedores', component: ProveedorComponent },
-  { path: 'usuarios', component: UsuarioComponent },
-  { path: 'inicio', component: InicioComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'productos', component: ProductoComponent, canActivate: [AuthGuard] },
+  { path: 'facturas', component: FacturasComponent, canActivate: [AuthGuard] },
+  { path: 'clientes', component: ClienteComponent, canActivate: [AuthGuard] },
+  { path: 'proveedores', component: ProveedorComponent, canActivate: [AuthGuard] },
+  { path: 'usuarios', component: UsuarioComponent, canActivate: [AuthGuard] },
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
