@@ -2,8 +2,8 @@
 <div class="container-items">
   <h3 class="text-panel">Productos</h3>
   <mat-form-field>
-    <mat-label>Buscar productos</mat-label>
-    <input matInput (keyup)="filtrar($event.target.value)" placeholder="Buscar">
+    <mat-label>Buscar producto</mat-label>
+    <input matInput [(ngModel)]="nombreProducto" (keyup)="filtrar($event.target.value)" placeholder="Buscar">
   </mat-form-field>
   <button mat-flat-button color="primary" (click)="onEdit()"><mat-icon>add</mat-icon> Agregar</button>
 </div>

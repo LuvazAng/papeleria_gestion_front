@@ -31,6 +31,9 @@ import { ProveedorModalComponent } from './views/proveedor/proveedor-modal/prove
 import { UsuarioModalComponent } from './views/usuario/usuario-modal/usuario-modal.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FacturasModelComponent } from './views/facturas/facturas-model/facturas-model.component';
+import { InicioComponent } from './views/inicio/inicio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsuarioComponent,
     ClienteModalComponent,
     ProveedorModalComponent,
-    UsuarioModalComponent
+    UsuarioModalComponent,
+    FacturasModelComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatGridListModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     provideAnimationsAsync()

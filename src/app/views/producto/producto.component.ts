@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { ProductoModalComponent } from './producto-modal/producto-modal.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
@@ -22,15 +23,24 @@ export class ProductoComponent implements OnInit {
     'fecha',
     'opciones',
   ];
+  nombreProducto: string;
   dataSource: MatTableDataSource<Producto>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private productoService: ProductoService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.nombreProducto = params['nombre'];
+      if(this.nombreProducto){
+        this.filtrar(this.nombreProducto)
+      }
+    });
+
     this.productoService.productoActualizar.subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       setTimeout(() => this.dataSource.paginator = this.paginator);
@@ -49,7 +59,7 @@ export class ProductoComponent implements OnInit {
       width: '500px',
       data: produc,
     });
-    
+
   }
 
   onDelete(id: number) {

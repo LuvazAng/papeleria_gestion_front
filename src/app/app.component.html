@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +28,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="">
+                        <a routerLink="/inicio">
                             <i class="bx bxs-home icon"></i>
                             <span class="text nav-text">Inicio</span>
                         </a>
@@ -85,11 +84,6 @@
 
     <section class="home">
         <div class="card">
-            <div class="container-titles">
-                <div class="demo-section">
-                    <mat-icon [matBadge]="14" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
-                </div>
-            </div>
             <router-outlet></router-outlet>
         </div>
     </section>
