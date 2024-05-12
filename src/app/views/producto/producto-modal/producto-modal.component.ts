@@ -34,8 +34,16 @@ export class ProductoModalComponent implements OnInit {
     if (this.producto.fechaProducto = this.data.fechaProducto) {
       this.producto.fechaProducto = this.data.fechaProducto;
     } else {
-      this.producto.fechaProducto = new Date().toISOString().slice(0, 10);
+      this.producto.fechaProducto = this.obtenerFechaFormateada()
     }
+  }
+
+  obtenerFechaFormateada() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Agrega cero inicial si es necesario
+    const day = String(today.getDate()).padStart(2, '0'); // Agrega cero inicial si es necesario
+    return `${year}-${month}-${day}`;
   }
 
   itemSave() {

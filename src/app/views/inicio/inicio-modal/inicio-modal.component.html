@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Historial de ventas anuales</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Buscar venta</mat-label>
+        <input matInput (keyup)="filtrarTodas($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSourceTodas">
+        <!-- Position Column -->
+        <ng-container matColumnDef="idVenta">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idFacturacion}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombreCliente">
+            <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idCliente.nombreCliente}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nombreUsuario">
+            <mat-header-cell *matHeaderCellDef> Vendedor </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idUsuario.nombreUsuario}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+            <mat-cell *matCellDef="let element"> ${{element.totalVenta}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fechaFactura}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cerrar</button>
+</mat-dialog-actions>

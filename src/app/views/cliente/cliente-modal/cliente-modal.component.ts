@@ -34,8 +34,16 @@ export class ClienteModalComponent implements OnInit {
     if (this.cliente.fechaCliente = this.data.fechaCliente) {
       this.cliente.fechaCliente = this.data.fechaCliente;
     } else {
-      this.cliente.fechaCliente = new Date().toISOString().slice(0, 10);
+      this.cliente.fechaCliente = this.obtenerFechaFormateada()
     }
+  }
+
+  obtenerFechaFormateada() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Agrega cero inicial si es necesario
+    const day = String(today.getDate()).padStart(2, '0'); // Agrega cero inicial si es necesario
+    return `${year}-${month}-${day}`;
   }
 
   itemSave() {

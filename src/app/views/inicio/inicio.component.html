@@ -1,14 +1,95 @@
 <div class="container">
-  <div class="container_column">
-    <div>
+
+
+  <div class="container_row" >
+    <mat-card class="m-1">
+      <mat-card-content>
+        <p class="title_card"><mat-icon>point_of_sale</mat-icon>Ventas del día</p>
+        <p class="subtitle_card">
+          ${{totalVentasDia}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <br>
+    <mat-card class="m-1">
+      <mat-card-content>
+        <p class="title_card"><mat-icon>point_of_sale</mat-icon>Ventas del mes</p>
+        <p class="subtitle_card">
+          ${{totalVentasMes}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <br>
+    <mat-card class="m-1">
+      <mat-card-content>
+        <p class="title_card"><mat-icon>point_of_sale</mat-icon>Ventas del año</p>
+        <p class="subtitle_card">
+          ${{totalVentasAnual}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <button class="m-1 bhistory" mat-flat-button color="primary" (click)="verHistorial()">
+      <mat-icon class="s-1">monetization_on</mat-icon>
+      Historial de ventas
+    </button>
+  </div>
+
+  <div class="container_row">
+    <div class="m-1">
       <div class="container-items">
-        <h4>Ventas del mes</h4>
+        <h4>Ventas del día</h4>
+
+        <mat-form-field>
+          <mat-label>Buscar venta</mat-label>
+          <input matInput (keyup)="filtrarDia($event.target.value)" placeholder="Buscar">
+        </mat-form-field>
+      </div>
+      <mat-table [dataSource]="dataSourceDia" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="idVenta">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.idFacturacion}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombreCliente">
+          <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.idCliente.nombreCliente}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nombreUsuario">
+          <mat-header-cell *matHeaderCellDef> Vendedor </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.idUsuario.nombreUsuario}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="total">
+          <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+          <mat-cell *matCellDef="let element"> ${{element.totalVenta}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.fechaFactura}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+    <div class="m-1">
+      <div class="container-items">
+        <h4>Ventas mensuales</h4>
 
         <mat-form-field>
           <mat-label>Buscar venta mensual</mat-label>
           <input matInput (keyup)="filtrarMes($event.target.value)" placeholder="Buscar">
         </mat-form-field>
       </div>
+
+
       <mat-table [dataSource]="dataSourceMes" class="mat-elevation-z8">
         <!-- Position Column -->
         <ng-container matColumnDef="idVenta">
@@ -31,7 +112,7 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="total">
           <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.totalVenta}} </mat-cell>
+          <mat-cell *matCellDef="let element"> ${{element.totalVenta}} </mat-cell>
         </ng-container>
 
         <!-- Symbol Column -->
@@ -44,83 +125,16 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
     </div>
-    <br>
-    <div>
-      <div class="container-items">
-        <h4>Ventas anuales</h4>
-
-        <mat-form-field>
-          <mat-label>Buscar venta</mat-label>
-          <input matInput (keyup)="filtrarTodas($event.target.value)" placeholder="Buscar">
-        </mat-form-field>
-      </div>
-
-
-      <mat-table [dataSource]="dataSourceTodas" class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="idVenta">
-          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.idFacturacion}} </mat-cell>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="nombreCliente">
-          <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.idCliente.nombreCliente}} </mat-cell>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="nombreUsuario">
-          <mat-header-cell *matHeaderCellDef> Vendedor </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.idUsuario.nombreUsuario}} </mat-cell>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="total">
-          <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.totalVenta}} </mat-cell>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="fecha">
-          <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.fechaFactura}} </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-  </div>
-
-  <div class="container_column">
-    <mat-card>
-      <mat-card-content>
-        <p class="title_card"><mat-icon>point_of_sale</mat-icon>Ventas del mes</p>
-        <p class="subtitle_card">
-          ${{totalVentasMes}}
-        </p>
-      </mat-card-content>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-content>
-        <p class="title_card"><mat-icon>point_of_sale</mat-icon>Ventas del año</p>
-        <p class="subtitle_card">
-          ${{totalVentasAnual}}
-        </p>
-      </mat-card-content>
-    </mat-card>
-    <br>
     <mat-card class="mat-card-size">
       <mat-card-content>
         <p class="title_card_inv"><mat-icon>inventory</mat-icon> Producto bajo</p>
         <div *ngFor="let producto of productosBajoStock">
           <p class="p-title">{{ producto.nombreProducto }}</p>
-          <p class="p-subtitle">En stock: {{ producto.stock }}</p> 
+          <p class="p-subtitle">En stock: {{ producto.stock }}</p>
           <button mat-flat-button color="primary" (click)="verProducto(producto.nombreProducto)">Ver producto</button>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
+
 </div>

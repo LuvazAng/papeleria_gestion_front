@@ -29,4 +29,8 @@ export class FacturaService {
     return this.http.get<Factura[]>('http://localhost:8080/factura/ventas-mes');
   }
 
+  obtenerVentasDia(): Observable<Factura[]>{
+    return this.http.get<Factura[]>('http://localhost:8080/factura/ventas-fecha-actual')
+  }
+
 }

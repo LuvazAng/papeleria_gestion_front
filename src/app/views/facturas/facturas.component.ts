@@ -13,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Factura } from '../../model/factura';
 import { FacturasModelComponent } from './facturas-model/facturas-model.component';
+import { StockVacioComponent } from './stock-vacio/stock-vacio.component';
 
 
 @Component({
@@ -143,23 +144,23 @@ export class FacturasComponent implements OnInit {
 
   agregarProducto(): void {
     const productoSeleccionado = this.productos.find(producto => producto.idProducto === this.selectedProductoId);
-    if (productoSeleccionado) {
+    if (productoSeleccionado && productoSeleccionado.stock > 0) { // Verificar si el producto existe y tiene stock disponible
       const cantidadInput = (document.getElementById('cantidad') as HTMLInputElement);
       let cantidad = parseInt(cantidadInput.value.trim(), 10);
-
+  
       // Verificar si el campo de cantidad está vacío
       if (isNaN(cantidad) || cantidad <= 0) {
         // Si el campo de cantidad está vacío o no es un número válido, ingresar una cantidad predeterminada de 1
         cantidad = 1;
         cantidadInput.value = '1';
       }
-
+  
       let subtotal = cantidad * productoSeleccionado.precioUnitario;
       subtotal = Number(subtotal.toFixed(3)); // Limitar a 2 decimales y convertir de nuevo a número
-
+  
       // Buscar si el producto ya está en la tabla
       const indice = this.detallesFactura.findIndex(detalle => detalle.nombre === productoSeleccionado.nombreProducto);
-
+  
       if (indice !== -1) { // Si el producto ya está en la tabla
         // Actualizar la cantidad y el subtotal
         this.detallesFactura[indice].cantidad = cantidad;
@@ -172,14 +173,18 @@ export class FacturasComponent implements OnInit {
           cantidad: cantidad,
           subtotal: subtotal
         };
-
+  
         console.log(this.detallesFactura)
         this.detallesFactura.push(detalleProducto);
-
+  
         this.dataSource.data = this.detallesFactura;
         // Renderizar las filas de la tabla para reflejar los cambios
         this.dataSource._updateChangeSubscription();
       }
+    } else {
+      this.dialog.open(StockVacioComponent, {
+        width: '300px'
+      });
     }
   }
 
@@ -208,6 +213,14 @@ export class FacturasComponent implements OnInit {
     }
   }
 
+  obtenerFechaFormateada() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Agrega cero inicial si es necesario
+    const day = String(today.getDate()).padStart(2, '0'); // Agrega cero inicial si es necesario
+    return `${year}-${month}-${day}`;
+  }
+
   calcularTotal(): number {
     const total = this.detallesFactura.reduce((total, detalle) => total + detalle.subtotal, 0);
     return Number(total.toFixed(2)); // Limitar a 2 decimales y convertir a número
@@ -216,7 +229,7 @@ export class FacturasComponent implements OnInit {
   finalizarVenta(): void {
     if (!this.selectedClienteId || !this.selectedUsuarioId || !this.detallesFactura.length) {
       // Handle missing data (e.g., display an error message)
-      console.error('Error: Missing required data for creating a sale.');
+      console.error('Error: Se requiere seleccionar cliente, usuario o productos.');
       return;
     }
     const totalVenta = this.calcularTotal();
@@ -239,10 +252,10 @@ export class FacturasComponent implements OnInit {
         apellPaterno: '',
         apellMaterno: '',
         telefonoCliente: '',
-        fechaCliente: new Date().toISOString().slice(0, 10), // Set default date
+        fechaCliente:this.obtenerFechaFormateada(),
         borradoCliente: false
       },
-      fechaFactura: new Date().toISOString().slice(0, 10),
+      fechaFactura: this.obtenerFechaFormateada(),
       totalVenta: totalVenta
     };
 

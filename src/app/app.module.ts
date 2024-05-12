@@ -36,6 +36,8 @@ import { FacturasModelComponent } from './views/facturas/facturas-model/facturas
 import { InicioComponent } from './views/inicio/inicio.component';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { InicioModalComponent } from './views/inicio/inicio-modal/inicio-modal.component';
+import { StockVacioComponent } from './views/facturas/stock-vacio/stock-vacio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { AuthGuard } from './auth.guard';
     UsuarioModalComponent,
     FacturasModelComponent,
     InicioComponent,
-    LoginComponent
+    LoginComponent,
+    InicioModalComponent,
+    StockVacioComponent
   ],
   imports: [
     BrowserModule,

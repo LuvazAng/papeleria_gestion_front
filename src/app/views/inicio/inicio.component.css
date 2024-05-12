@@ -1,5 +1,5 @@
 mat-table {
-    width: 600px;
+    width: 700px;
 }
 
 mat-card {
@@ -10,7 +10,6 @@ mat-card {
 
 mat-card-content>div {
     margin-bottom: 10px;
-    /* Espacio entre cada elemento dentro de la tarjeta */
 }
 
 mat-card-content {
@@ -18,13 +17,13 @@ mat-card-content {
     flex-direction: column;
 }
 
-.mat-card-size{
-    height: 300px;
+.mat-card-size {
+    height: 285px;
 }
 
 .mat-mdc-table {
-    width: 600px;
-    max-height: 200px;
+    width: 420px;
+    max-height: 340px;
     overflow: auto;
 }
 
@@ -34,7 +33,7 @@ mat-card-content {
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 5px;
 }
 
@@ -42,6 +41,16 @@ mat-card-content {
     display: flex;
     flex-direction: column;
     margin: 10px;
+}
+
+.container_row {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.m-1 {
+    margin: 5px;
 }
 
 mat-icon {
@@ -79,13 +88,26 @@ h4 {
     font-size: 25px;
 }
 
-.p-title{
+.p-title {
     font-size: 18px;
     font-weight: bold;
 }
 
-.p-subtitle{
+.p-subtitle {
     font-size: 20px;
     font-weight: bold;
     color: brown;
+}
+
+.bhistory {
+    width: 230px;
+    height: 120px;
+    font-size: 20px;
+}
+
+
+.s-1{
+    width: 50px;
+    height: 50px;
+    font-size: 35px;
 }

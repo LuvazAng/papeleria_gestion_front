@@ -5,6 +5,8 @@ import { FacturaService } from '../../service/factura.service';
 import { ProductoService } from '../../service/producto.service';
 import { Producto } from '../../model/producto';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { InicioModalComponent } from './inicio-modal/inicio-modal.component';
 
 
 @Component({
@@ -16,6 +18,7 @@ export class InicioComponent implements OnInit {
 
   totalVentasMes: number = 0;
   totalVentasAnual: number = 0;
+  totalVentasDia: number = 0;
   productosBajoStock: Producto[] = [];
 
   displayedColumns = [
@@ -27,17 +30,20 @@ export class InicioComponent implements OnInit {
   ];
   dataSourceMes: MatTableDataSource<Factura>;
   dataSourceTodas: MatTableDataSource<Factura>;
-
+  dataSourceDia: MatTableDataSource<Factura>;
 
   constructor(
     private router: Router,
     private facturaService: FacturaService,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.listarMes();
     this.listarTodas();
+    this.listarDia();
+    this.calcularTotalVentasDia();
     this.calcularTotalVentasMes();
     this.calcularTotalVentasAnual();
     this.obtenerProductosBajoStock();
@@ -61,6 +67,14 @@ export class InicioComponent implements OnInit {
     });
   }
 
+  listarDia() {
+    this.facturaService.obtenerVentasDia().subscribe((data) => {
+      this.dataSourceDia = new MatTableDataSource(data);
+      this.dataSourceDia.filterPredicate = (data: Factura, filtro: string) => {
+        return data.idCliente.nombreCliente.toLowerCase().includes(filtro);
+      };
+    });
+  }
 
   filtrarMes(valor: string) {
     this.dataSourceMes.filter = valor.trim().toLowerCase();
@@ -68,6 +82,10 @@ export class InicioComponent implements OnInit {
 
   filtrarTodas(valor: string) {
     this.dataSourceTodas.filter = valor.trim().toLowerCase();
+  }
+
+  filtrarDia(valor: string) {
+    this.dataSourceDia.filter = valor.trim().toLowerCase();
   }
 
   calcularTotalVentasMes() {
@@ -88,6 +106,15 @@ export class InicioComponent implements OnInit {
     });
   }
 
+  calcularTotalVentasDia() {
+    this.facturaService.obtenerVentasDia().subscribe((data) => {
+      // Suma el total de todas las ventas del mes
+      this.totalVentasDia = data.reduce((total, venta) => total + venta.totalVenta, 0);
+      // Redondea el total a dos decimales
+      this.totalVentasDia = parseFloat(this.totalVentasDia.toFixed(2));
+    });
+  }
+
   obtenerProductosBajoStock() {
     this.productoService.obtenerProductoBajo().subscribe((data) => {
       this.productosBajoStock = data;
@@ -97,4 +124,12 @@ export class InicioComponent implements OnInit {
   verProducto(nombreProducto: string) {
     this.router.navigate(['/productos'], { queryParams: { nombre: nombreProducto } });
   }
+
+  verHistorial(){
+    this.dialog.open(InicioModalComponent,{
+      width: '700px'
+    })
+  }
+
+
 }
